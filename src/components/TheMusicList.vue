@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="row row-cols-6">
+        <div class="row row-cols-5 pt-5">
             <div class="col" v-for="theMusic in theMusicList" :key="theMusic.author">
                 <TheMusic :info="theMusic"></TheMusic>
             </div>
@@ -14,7 +14,7 @@ import TheMusic from "./TheMusic.vue";
 
 
 export default {
-    name: "TheMusic",
+    name: "TheMusicList",
     components: {TheMusic},
     props: {
         info: Object,
@@ -29,8 +29,10 @@ export default {
     methods: {
         fetchTheMusicList() {
             axios
-                .get(this.apiURL).then((axiosResponse) => {
-                this.theMusicList = axiosResponse.data.results;
+                .get(this.apiURL).then((resp) => {
+                //this.theMusicList = response.data.results;
+                this.theMusicList = resp.data.response
+                
             });
         },
     },
