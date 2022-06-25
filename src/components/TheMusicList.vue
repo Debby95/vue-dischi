@@ -1,5 +1,10 @@
 <template>
     <div class="container">
+        <select class="mt-3" v-model="selected">
+            <option v-for="genre in getGenreList" :key="genre">
+                {{genre}}
+            </option>
+        </select>
         <div class="row row-cols-5 pt-5">
             <div class="col" v-for="theMusic in theMusicList" :key="theMusic.author">
                 <TheMusic :info="theMusic"></TheMusic>
@@ -38,9 +43,25 @@ export default {
     },
     mounted() {
         this.fetchTheMusicList();
-    }
+    },
+    computed: {
+        getGenreList() {
+            const list = [];
+            this.theMusicList.forEach((theMusic) => {
+                if (!list.includes(theMusic.genre)) {
+                    list.push(theMusic.genre);
+                }
+            });
+            return list;
+        },
+    },
 };
 </script>
 
 <style>
+    select {
+        border-radius: 30px;
+        width: 100px;
+        text-align: center;
+    }
 </style>
