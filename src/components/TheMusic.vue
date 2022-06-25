@@ -18,11 +18,6 @@ export default {
 
 
 <style>
-    h5 {
-        
-    }
-
-
     .themusic {
         background-color: #2E3A46;
         text-align: center;
